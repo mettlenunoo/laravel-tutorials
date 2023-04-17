@@ -18,4 +18,10 @@ class HomeSliderController extends Controller
 
         return view('home-slider.show-slider' ,compact('homeslider','userData'));
     }
+
+        public function update(Request $request)
+    {
+        $slider_id = HomeSlider::find(1);
+
+    }
 }
