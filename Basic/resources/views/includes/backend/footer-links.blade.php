@@ -5,6 +5,12 @@
     <script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
     <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
 
+    <!--tinymce js-->
+    <script src="{{asset('backend/assets/libs/tinymce/tinymce.min.js')}}"></script>
+
+    <!-- init js -->
+    <script src="{{asset('backend/assets/js/pages/form-editor.init.js')}}"></script>
+
 
     <!-- apexcharts -->
     <script src="{{asset('backend/assets/libs/apexcharts/apexcharts.min.js')}}"></script>

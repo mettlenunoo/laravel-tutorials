@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
@@ -49,6 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(HomeSliderController::class)->group(function () {
         Route::get('home/slide', 'show')->name('home.slider');
         Route::post('update/slider', 'update')->name('update.slider');
+    });
+
+    Route::controller(AboutController::class)->group(function () {
+        Route::get('about/info', 'show')->name('about.info');
+        Route::post('update/about', 'update')->name('update.about');
     });
     
 });
