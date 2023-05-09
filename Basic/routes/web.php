@@ -55,6 +55,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(AboutController::class)->group(function () {
         Route::get('about/info', 'show')->name('about.info');
         Route::post('update/about', 'update')->name('update.about');
+
+        Route::get('about/multi/image', 'aboutMultiImage')->name('about.multi.image');
+        Route::post('update/about/multi/image', 'storeMultiImage')->name('update.about.multi.image');
     });
     
 });

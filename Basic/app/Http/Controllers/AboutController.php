@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\About;
+use App\Models\MultiImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -84,4 +86,48 @@ class AboutController extends Controller
 
     }
 
+    public function aboutMultiImage() 
+    {
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+        
+        // $aboutData = MultiImage::find(1);
+
+        return view('backend.about-info.about-multi-image', compact('userData'));
+    }
+
+    public function storeMultiImage(Request $request)
+    {
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+
+        $image = $request->file('multi_image');
+
+        foreach ($image as $multi_image)
+        {
+            $name_gen = hexdec(uniqid()).'.'.$multi_image->getClientOriginalExtension();
+    
+            Image::make($multi_image)->resize(220,220)->save('uploads/about-multi-images/'.$name_gen);
+    
+            $save_url = 'uploads/about-multi-images/'.$name_gen;
+    
+    
+            MultiImage::insert([
+                'multi_image' => $save_url,
+                'created_at' => Carbon::now(),
+            ]);
+
+        }
+
+
+        $notification = array(
+            'message' => 'About Multiple Images Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+
+
+    }
 }

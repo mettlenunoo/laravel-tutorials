@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\HomeSlider;
 use Illuminate\Http\Request;
 
@@ -11,12 +12,16 @@ class FrontendController extends Controller
     {
         $homeslider = HomeSlider::find(1);
 
-        return view('frontend.index' ,compact('homeslider'));
+        $aboutData = About::find(1);
+
+        return view('frontend.index' ,compact('homeslider','aboutData'));
     }
 
     public function about_page()
     {
-        return view('frontend.about');
+        $aboutData = About::find(1);
+
+        return view('frontend.about' ,compact('aboutData'));
     }
 
     public function services_page()
