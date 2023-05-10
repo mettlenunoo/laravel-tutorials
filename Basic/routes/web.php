@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard/profile' , 'showProfile')->name('show.profile');
         Route::get('/edit/profile' , 'editProfile')->name('edit.profile');
         Route::post('/store/profile' , 'storeProfile')->name('store.profile');
-    
+
         Route::get('/change/password' , 'changePassword')->name('change.password');
         Route::post('/update/password' , 'updatePassword')->name('update.password');
 
@@ -58,9 +58,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('about/multi/image', 'aboutMultiImage')->name('about.multi.image');
         Route::post('update/about/multi/image', 'storeMultiImage')->name('update.about.multi.image');
-        Route::get('all/about/multi/image', 'allAboutMultiImage')->name('all.about.multi.image');
+        Route::get('all/about/multi/image/', 'allAboutMultiImage')->name('all.about.multi.image');
+        Route::get('edit/about/multi/image/{imgId}', 'editAboutMultiImage')->name('edit.about.multi.image');
+        Route::post('update/single/about/multi/image/{imgId}', 'updateSingleMultiImage')->name('update.single.about.multi.image');
+        Route::get('delete/single/about/multi/image/{imgId}', 'deleteSingleMultiImage')->name('delete.single.about.multi.image');
     });
-    
+
 });
 
 
