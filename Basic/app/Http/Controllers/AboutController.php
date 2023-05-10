@@ -23,7 +23,7 @@ class AboutController extends Controller
     {
         $id = Auth::user()->id;
         $userData = User::find($id);
-        
+
         $aboutData = About::find(1);
 
         return view('backend.about-info.about-info', compact('aboutData','userData'));
@@ -62,7 +62,7 @@ class AboutController extends Controller
                 'message' => 'About Info Updated With Image Successfully',
                 'alert-type' => 'success'
             );
-    
+
             return redirect()->back()->with($notification);
 
 
@@ -80,17 +80,17 @@ class AboutController extends Controller
                 'message' => 'About Info Updated Without Image Successfully',
                 'alert-type' => 'success'
             );
-    
+
             return redirect()->back()->with($notification);
         }
 
     }
 
-    public function aboutMultiImage() 
+    public function aboutMultiImage()
     {
         $id = Auth::user()->id;
         $userData = User::find($id);
-        
+
         // $aboutData = MultiImage::find(1);
 
         return view('backend.about-info.about-multi-image', compact('userData'));
@@ -106,12 +106,12 @@ class AboutController extends Controller
         foreach ($image as $multi_image)
         {
             $name_gen = hexdec(uniqid()).'.'.$multi_image->getClientOriginalExtension();
-    
+
             Image::make($multi_image)->resize(220,220)->save('uploads/about-multi-images/'.$name_gen);
-    
+
             $save_url = 'uploads/about-multi-images/'.$name_gen;
-    
-    
+
+
             MultiImage::insert([
                 'multi_image' => $save_url,
                 'created_at' => Carbon::now(),
@@ -129,5 +129,17 @@ class AboutController extends Controller
 
 
 
+    }
+
+    public function allAboutMultiImage()
+    {
+        $id = Auth::user()->id;
+        $userData = User::find($id);
+
+        $multiImageData = MultiImage::all();
+
+        $counter = 1;
+
+        return view('backend.about-info.all-about-multi-image', compact('userData' , 'multiImageData','counter'));
     }
 }

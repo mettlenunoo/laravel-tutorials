@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('about/multi/image', 'aboutMultiImage')->name('about.multi.image');
         Route::post('update/about/multi/image', 'storeMultiImage')->name('update.about.multi.image');
+        Route::get('all/about/multi/image', 'allAboutMultiImage')->name('all.about.multi.image');
     });
     
 });
